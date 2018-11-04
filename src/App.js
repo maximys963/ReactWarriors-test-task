@@ -8,20 +8,19 @@ class App extends Component {
         super(props);
         this.state = {
             moviesData: [],
-            moviesWillWatch: [],
+            moviesWillWatch: []
         }
     }
 
     componentDidMount() {
         this.setState({
-            moviesData: moviesData
+            moviesData: moviesData,
         });
 
     }
-    onMovieItemClick = (e) => {
-        let rating = e.target.parentNode.parentNode.childNodes[0].innerHTML;
+    onMovieItemClick = ( rating, title) => {
         this.setState({
-            moviesWillWatch: rating
+            moviesWillWatch: this.state.moviesWillWatch.concat({ rating: rating, title: title })
         });
     };
 
@@ -31,9 +30,9 @@ class App extends Component {
                 <div className='row'>
                     <div className='col-md-10'><MovieList movies={this.state.moviesData} chooseItem={this.onMovieItemClick} /></div>
                     <div className='col-md-2'>
-                        <MovieListWillWatch />
+                        <MovieListWillWatch featureMovies={this.state.moviesWillWatch} />
+                        {console.log(this.state.moviesWillWatch)}
                     </div>
-                    {console.log(this.state.moviesWillWatch)}
 
                 </div>
             </div>
