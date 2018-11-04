@@ -18,10 +18,33 @@ class App extends Component {
         });
 
     }
-    onMovieItemClick = ( rating, title) => {
-        this.setState({
-            moviesWillWatch: this.state.moviesWillWatch.concat({ rating: rating, title: title })
-        });
+    onMovieItemClick = (e, rating, title) => {
+        console.log(this.state.moviesWillWatch.some( (film) => film.title === title));
+        if(!this.state.moviesWillWatch.some((film) => film.title === title)){
+            e.target.classList.remove("btn-secondary");
+            e.target.classList.add("btn-success");
+            this.setState({
+                moviesWillWatch: this.state.moviesWillWatch.concat({ rating: rating, title: title})
+            });
+        }else {
+            e.target.classList.remove("btn-success");
+            e.target.classList.add("btn-secondary");
+            this.state.moviesWillWatch.forEach( (elem, index) =>{
+                    if(elem.title === title){
+                        console.log(index);
+                        let moviesWillWatchArray = this.state.moviesWillWatch;
+                        moviesWillWatchArray.splice(index, 1);
+                        console.log(moviesWillWatchArray);
+                       this.setState({
+                           moviesWillWatch: moviesWillWatchArray
+                       })
+                    }
+                })
+
+
+
+        }
+
     };
 
     render() {

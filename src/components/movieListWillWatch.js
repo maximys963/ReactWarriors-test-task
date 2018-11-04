@@ -7,9 +7,9 @@ class MovieListWillWatch extends Component {
             <div>
                 <ul className="list-group">
                     {this.props.featureMovies.map(
-                        (elem) => {
+                        (elem, index) => {
                             return(
-                                <li className="list-group-item">{`${elem.title}: ${elem.rating}`}</li>
+                                <li key={index} className="list-group-item">{`${elem.title}: ${elem.rating}`}</li>
                             )
                         }
                     )}
