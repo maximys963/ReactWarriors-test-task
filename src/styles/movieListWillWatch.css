@@ -1,0 +1,10 @@
+.movie-will-container{
+    margin-top: 30px;
+    position: fixed;
+}
+.item-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
